@@ -37,6 +37,9 @@ Session: 2025/26
 5. **Open in browser**  
    Go to `http://localhost:3000`
 
+6. **Live Site**
+    Go to yoga-booking-production.up.railway.app
+    Note: The deployed version starts with an empty database. To see the site with sample data, run locally using npm run seed then npm start
 ---
 
 ## Login Credentials (after seeding)
