@@ -1,0 +1,25 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">&#129496; Yoga &amp; Mindfulness Studio</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/courses">Courses</a>
+      {{#user}}
+        <a href="/my-bookings">My Bookings</a>
+        {{#user.isOrganiser}}
+          <a href="/organiser">Organiser</a>
+        {{/user.isOrganiser}}
+        <a href="/auth/logout">Logout ({{user.name}})</a>
+      {{/user}}
+      {{^user}}
+        <a href="/auth/login">Login</a>
+        <a href="/auth/register">Register</a>
+      {{/user}}
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+{{#flash}}
+  {{#flash.error}}<div class="alert error" role="alert" aria-live="assertive">{{flash.error}}</div>{{/flash.error}}
+  {{#flash.success}}<div class="alert success" role="alert" aria-live="polite">{{flash.success}}</div>{{/flash.success}}
+{{/flash}}

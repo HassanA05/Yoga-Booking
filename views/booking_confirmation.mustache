@@ -1,0 +1,28 @@
+{{> head}}
+{{> header}}
+
+<div class="confirmation-box">
+  <div class="confirmation-icon">&#10003;</div>
+  <h1>Booking Confirmed!</h1>
+  <p class="lead">Your booking has been successfully created.</p>
+
+  <dl class="kv">
+    <dt>Booking ID</dt><dd>{{booking.id}}</dd>
+    <dt>Course</dt><dd>{{booking.courseTitle}}</dd>
+    <dt>Type</dt><dd>{{booking.type}}</dd>
+    <dt>Status</dt>
+    <dd>
+      {{#booking.isConfirmed}}<span class="badge badge--green">Confirmed</span>{{/booking.isConfirmed}}
+      {{#booking.isWaitlisted}}<span class="badge badge--orange">Waitlisted</span>{{/booking.isWaitlisted}}
+      {{^booking.isConfirmed}}{{^booking.isWaitlisted}}<span class="badge">{{booking.status}}</span>{{/booking.isWaitlisted}}{{/booking.isConfirmed}}
+    </dd>
+    <dt>Booked at</dt><dd>{{booking.createdAt}}</dd>
+  </dl>
+
+  <div class="actions">
+    <a class="btn primary" href="/my-bookings">View All My Bookings</a>
+    <a class="btn" href="/courses">Browse More Courses</a>
+  </div>
+</div>
+
+{{> footer}}

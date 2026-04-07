@@ -1,0 +1,83 @@
+{{> head}}
+{{> header}}
+
+<article class="course-detail">
+  <h1>{{course.title}}</h1>
+  <p class="muted">
+    <span class="badge">{{course.level}}</span>
+    <span class="badge">{{course.type}}</span>
+    {{#course.allowDropIn}}<span class="badge badge--green">Drop-in available</span>{{/course.allowDropIn}}
+  </p>
+  <p class="lead">{{course.description}}</p>
+
+  <ul class="meta-list">
+    <li><strong>Dates:</strong> {{course.startDate}} &ndash; {{course.endDate}}</li>
+    <li><strong>Location:</strong> {{course.location}}</li>
+    <li><strong>Price:</strong> {{course.price}}</li>
+  </ul>
+
+  {{#user}}
+  <section class="booking-section">
+    <h2>Book the Full Course</h2>
+    <p>Reserve a place across all sessions in this course.</p>
+    <form method="post" action="/courses/{{course.id}}/book">
+      <button class="btn primary" type="submit">Book Full Course</button>
+    </form>
+  </section>
+  {{/user}}
+  {{^user}}
+  <section class="booking-section">
+    <p>
+      <a class="btn primary" href="/auth/login">Login to Book</a>
+      &nbsp;
+      <a class="btn" href="/auth/register">Register</a>
+    </p>
+  </section>
+  {{/user}}
+
+  <section>
+    <h2>Sessions</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Capacity</th>
+          <th>Booked</th>
+          <th>Remaining</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#sessions}}
+        <tr>
+          <td>{{start}}</td>
+          <td>{{end}}</td>
+          <td>{{capacity}}</td>
+          <td>{{booked}}</td>
+          <td>{{remaining}}</td>
+          <td>
+            {{#allowDropIn}}
+              {{#user}}
+                <form method="post" action="/sessions/{{id}}/book">
+                  <button class="btn" type="submit" {{#isFull}}disabled{{/isFull}}>
+                    {{#isFull}}Full{{/isFull}}{{^isFull}}Book Session{{/isFull}}
+                  </button>
+                </form>
+              {{/user}}
+              {{^user}}
+                <a class="btn" href="/auth/login">Login to Book</a>
+              {{/user}}
+            {{/allowDropIn}}
+            {{^allowDropIn}}
+              <span class="muted">Full course only</span>
+            {{/allowDropIn}}
+          </td>
+        </tr>
+        {{/sessions}}
+      </tbody>
+    </table>
+  </section>
+</article>
+
+{{> footer}}

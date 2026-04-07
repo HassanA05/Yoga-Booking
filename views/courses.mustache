@@ -1,0 +1,88 @@
+{{> head}}
+{{> header}}
+
+<h1>All Courses</h1>
+
+<section class="filters">
+  <form class="filter-form" method="get" action="/courses">
+    <label>
+      Level
+      <select name="level">
+        <option value="">Any</option>
+        <option value="beginner" {{#filters.isLevelBeginner}}selected{{/filters.isLevelBeginner}}>Beginner</option>
+        <option value="intermediate" {{#filters.isLevelIntermediate}}selected{{/filters.isLevelIntermediate}}>Intermediate</option>
+        <option value="advanced" {{#filters.isLevelAdvanced}}selected{{/filters.isLevelAdvanced}}>Advanced</option>
+      </select>
+    </label>
+
+    <label>
+      Type
+      <select name="type">
+        <option value="">Any</option>
+        <option value="WEEKLY_BLOCK">Weekly Block</option>
+        <option value="WEEKEND_WORKSHOP">Weekend Workshop</option>
+      </select>
+    </label>
+
+    <label>
+      Drop-in
+      <select name="dropin">
+        <option value="">Any</option>
+        <option value="yes">Available</option>
+        <option value="no">Not available</option>
+      </select>
+    </label>
+
+    <label>
+      Search
+      <input type="search" name="q" value="{{filters.q}}" placeholder="Title or description" />
+    </label>
+
+    <div class="filter-actions">
+      <button class="btn primary" type="submit">Apply Filters</button>
+      <a class="btn" href="/courses">Reset</a>
+    </div>
+  </form>
+</section>
+
+<div class="cards">
+  {{#courses}}
+  <article class="card">
+    <h3><a href="/courses/{{id}}">{{title}}</a></h3>
+    <p class="muted">
+      <span class="badge">{{level}}</span>
+      <span class="badge">{{type}}</span>
+      {{#allowDropIn}}<span class="badge badge--green">Drop-in OK</span>{{/allowDropIn}}
+    </p>
+    <p>{{description}}</p>
+    <ul class="meta-list">
+      <li><strong>Dates:</strong> {{startDate}} &ndash; {{endDate}}</li>
+      <li><strong>Next session:</strong> {{nextSession}}</li>
+      <li><strong>Sessions:</strong> {{sessionsCount}}</li>
+      <li><strong>Location:</strong> {{location}}</li>
+      <li><strong>Price:</strong> {{price}}</li>
+    </ul>
+    <a class="btn primary" href="/courses/{{id}}">View &amp; Book</a>
+  </article>
+  {{/courses}}
+
+  {{^courses}}
+  <p>No courses match your filters.</p>
+  {{/courses}}
+</div>
+
+{{#pagination.totalPages}}
+{{#pagination}}
+<nav class="pagination" aria-label="Page navigation">
+  {{#hasPrev}}
+    <a class="btn" href="{{prevLink}}">&larr; Previous</a>
+  {{/hasPrev}}
+  <span class="muted">Page {{page}} of {{totalPages}} ({{total}} courses)</span>
+  {{#hasNext}}
+    <a class="btn" href="{{nextLink}}">Next &rarr;</a>
+  {{/hasNext}}
+</nav>
+{{/pagination}}
+{{/pagination.totalPages}}
+
+{{> footer}}

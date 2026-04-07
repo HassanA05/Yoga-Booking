@@ -1,0 +1,62 @@
+{{> head}}
+{{> header}}
+
+<div class="page-title-row">
+  <h1>{{title}}</h1>
+  <a class="btn" href="/organiser/courses">Back to Courses</a>
+</div>
+
+<section class="filters">
+  <form class="filter-form" method="get" action="/organiser/courses/{{course.id}}/class-list">
+    <label>
+      Filter by session
+      <select name="session" onchange="this.form.submit()">
+        <option value="">All sessions</option>
+        {{#sessions}}
+        <option value="{{id}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+        {{/sessions}}
+      </select>
+    </label>
+    <noscript><button class="btn" type="submit">Apply</button></noscript>
+  </form>
+</section>
+
+{{#selectedSession}}
+<p class="muted">Showing participants for session: <strong>{{selectedSession}}</strong></p>
+{{/selectedSession}}
+{{^selectedSession}}
+<p class="muted">Showing all participants across all sessions.</p>
+{{/selectedSession}}
+
+<p><strong>{{total}}</strong> participant(s)</p>
+
+{{#participants}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Booking Type</th>
+      <th>Status</th>
+      <th>Booked At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#participants}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{email}}</td>
+      <td>{{bookingType}}</td>
+      <td><span class="badge">{{status}}</span></td>
+      <td>{{bookedAt}}</td>
+    </tr>
+    {{/participants}}
+  </tbody>
+</table>
+{{/participants}}
+
+{{^participants}}
+<p>No confirmed bookings for this selection.</p>
+{{/participants}}
+
+{{> footer}}

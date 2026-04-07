@@ -1,0 +1,43 @@
+{{> head}}
+{{> header}}
+
+<div class="page-title-row">
+  <h1>Manage Users</h1>
+  <a class="btn" href="/organiser">Back to Dashboard</a>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#users}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{email}}</td>
+      <td><span class="badge {{#isOrganiser}}badge--blue{{/isOrganiser}}">{{role}}</span></td>
+      <td class="action-cell">
+        <form method="post" action="/organiser/users/{{id}}/role" style="display:inline-flex; gap:0.5rem; align-items:center;">
+          <select name="role">
+            <option value="student" {{^isOrganiser}}selected{{/isOrganiser}}>Student</option>
+            <option value="organiser" {{#isOrganiser}}selected{{/isOrganiser}}>Organiser</option>
+          </select>
+          <button class="btn" type="submit">Update Role</button>
+        </form>
+        <form method="post" action="/organiser/users/{{id}}/delete"
+              onsubmit="return confirm('Remove this user?')" style="display:inline;">
+          <button class="btn btn--danger" type="submit">Remove</button>
+        </form>
+      </td>
+    </tr>
+    {{/users}}
+  </tbody>
+</table>
+
+{{> footer}}

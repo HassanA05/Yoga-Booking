@@ -1,0 +1,23 @@
+{{> head}}
+{{> header}}
+
+<h1>Organiser Dashboard</h1>
+<p class="lead">Manage courses, sessions, and users.</p>
+
+<div class="cards">
+  <article class="card">
+    <h2>&#128218; Courses</h2>
+    <p class="stat">{{courseCount}} courses</p>
+    <p>Add, edit, or delete courses and their sessions.</p>
+    <a class="btn primary" href="/organiser/courses">Manage Courses</a>
+  </article>
+
+  <article class="card">
+    <h2>&#128100; Users</h2>
+    <p class="stat">{{userCount}} users</p>
+    <p>View all registered users and manage their roles.</p>
+    <a class="btn primary" href="/organiser/users">Manage Users</a>
+  </article>
+</div>
+
+{{> footer}}

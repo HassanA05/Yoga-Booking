@@ -1,0 +1,39 @@
+{{> head}}
+{{> header}}
+
+<section class="page-hero">
+  <h1>Welcome to Yoga &amp; Mindfulness Studio</h1>
+  <p class="lead">Find your balance. Join one of our upcoming courses or drop in to a class.</p>
+</section>
+
+
+<section>
+  <h2>Upcoming Courses</h2>
+  <div class="cards">
+    {{#courses}}
+    <article class="card">
+      <h3><a href="/courses/{{id}}">{{title}}</a></h3>
+      <p class="muted">
+        <span class="badge">{{level}}</span>
+        <span class="badge">{{type}}</span>
+        {{#allowDropIn}}<span class="badge badge--green">Drop-in OK</span>{{/allowDropIn}}
+      </p>
+      <p>{{description}}</p>
+      <ul class="meta-list">
+        <li><strong>Dates:</strong> {{startDate}} &ndash; {{endDate}}</li>
+        <li><strong>Next session:</strong> {{nextSession}}</li>
+        <li><strong>Sessions:</strong> {{sessionsCount}}</li>
+        <li><strong>Location:</strong> {{location}}</li>
+        <li><strong>Price:</strong> {{price}}</li>
+      </ul>
+      <a class="btn primary" href="/courses/{{id}}">View &amp; Book</a>
+    </article>
+    {{/courses}}
+
+    {{^courses}}
+    <p>No courses available yet. Check back soon!</p>
+    {{/courses}}
+  </div>
+</section>
+
+{{> footer}}

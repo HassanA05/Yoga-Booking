@@ -1,0 +1,52 @@
+{{> head}}
+{{> header}}
+
+<div class="page-title-row">
+  <h1>Manage Courses</h1>
+  <a class="btn primary" href="/organiser/courses/add">+ Add Course</a>
+</div>
+
+{{^courses}}
+<p>No courses yet. <a href="/organiser/courses/add">Add the first course</a>.</p>
+{{/courses}}
+
+{{#hasCourses}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Level</th>
+      <th>Type</th>
+      <th>Drop-in</th>
+      <th>Sessions scheduled</th>
+      <th>Dates</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#courses}}
+    <tr>
+      <td><strong>{{title}}</strong></td>
+      <td>{{level}}</td>
+      <td>{{type}}</td>
+      <td>{{#allowDropIn}}Yes{{/allowDropIn}}{{^allowDropIn}}No{{/allowDropIn}}</td>
+      <td>
+        {{sessionsCount}}
+        {{#hasNoSessions}}<span class="muted"> — <a href="/organiser/courses/{{id}}/sessions/add">add sessions</a></span>{{/hasNoSessions}}
+      </td>
+      <td>{{startDate}} &ndash; {{endDate}}</td>
+      <td class="action-cell">
+        <a class="btn" href="/organiser/courses/{{id}}/edit">Edit</a>
+        <a class="btn" href="/organiser/courses/{{id}}/sessions">Sessions</a>
+        <a class="btn" href="/organiser/courses/{{id}}/class-list">Class List</a>
+        <form method="post" action="/organiser/courses/{{id}}/delete" onsubmit="return confirm('Delete this course and all its sessions?')">
+          <button class="btn btn--danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {{/courses}}
+  </tbody>
+</table>
+{{/hasCourses}}
+
+{{> footer}}
