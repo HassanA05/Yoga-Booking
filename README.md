@@ -15,7 +15,7 @@ Session: 2025/26
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/HassanA05/Yoga-Booking OR use the zip file
    cd yoga-booking
    ```
 
