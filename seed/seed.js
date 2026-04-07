@@ -177,14 +177,14 @@ async function run() {
     sessionsDb.count({}),
   ]);
 
-  console.log("\n✅ Seed complete.");
+  console.log("\nSeed complete.");
   console.log(`   Users: ${users} | Courses: ${courses} | Sessions: ${sessions}`);
-  console.log("\n🔑 Login credentials:");
+  console.log("\n Login credentials:");
   console.log("   Organiser → organiser@yoga.local  / organiser123");
   console.log("   Student   → student@yoga.local    / student123");
 }
 
 run().catch((err) => {
-  console.error("❌ Seed failed:", err?.stack || err);
+  console.error(" Seed failed:", err?.stack || err);
   process.exit(1);
 });
