@@ -1,7 +1,6 @@
 # Yoga & Mindfulness Studio — Booking System
 
-Web Application Development 2 (M3I325640 / M3I326794)  
-Session: 2025/26
+Web Application Development 2
 
 ---
 
