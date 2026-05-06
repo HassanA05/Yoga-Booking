@@ -38,7 +38,7 @@ Web Application Development 2
 
 6. **Live Site**
     Go to yoga-booking-production.up.railway.app
-    Note: The deployed version starts with an empty database. To see the site with sample data, run locally using npm run seed then npm start
+    Note: The deployed version starts with an empty database. To see the site with sample data, run locally using npm run seed then npm start. Also, the expiry for Railway Trial ends on 08/05/2026 or until free credits run out, so live site may not be working past this date. 
 ---
 
 ## Login Credentials (after seeding)
